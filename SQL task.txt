@@ -1,0 +1,26 @@
+--TABLES:
+
+CREATE TABLE products(
+    prod_id INT PRIMARY KEY,
+    product VARCHAR(20)
+);
+
+CREATE TABLE categories(
+    cat_id INT PRIMARY KEY,
+    category VARCHAR(20)
+);
+
+CREATE TABLE prod_cat(
+    prod_id INT,
+    cat_id INT,
+    FOREIGN KEY(prod_id) REFERENCES products(prod_id) ON DELETE CASCADE,
+    FOREIGN KEY(cat_id) REFERENCES categories(cat_id) ON DELETE SET NULL
+);
+
+
+--QUERRY:
+
+SELECT products.product, categories.category
+FROM products
+LEFT JOIN prod_cat ON products.prod_id = prod_cat.prod_id
+LEFT JOIN categories ON categories.cat_id = prod_cat.cat_id;
