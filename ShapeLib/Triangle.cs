@@ -31,6 +31,9 @@ namespace ShapeLib
         }
         public Triangle(double firstSide, double secondSide, bool byAngle, double angleBetweenThemInRadians) //bool is there to make the ctor overload possible
         {
+            if (firstSide <= 0 || secondSide <= 0 || angleBetweenThemInRadians <= 0)
+                throw new ArgumentException("All sides and angles of a triangle should be positive");
+
             Side0 = firstSide;
             Side1 = secondSide;
 
